@@ -1,70 +1,135 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# e-Commerce Gapsi - Gestión de Proveedores
 
-## Available Scripts
+Este proyecto es una aplicación de React para la gestión de proveedores, con funcionalidades para listar, agregar y eliminar proveedores, implementada con Material-UI y `react-virtualized` para la visualización eficiente de datos.
 
-In the project directory, you can run:
+## Características
 
-### `npm start`
+- Pantalla de bienvenida con el mensaje y versión de la aplicación.
+- Gestión de proveedores con las opciones de agregar y eliminar.
+- Paginación virtual usando `react-virtualized`.
+- Diseño responsivo usando Material-UI.
+- Integración con API REST a través de `axios`.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Requisitos previos
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Para instalar y ejecutar este proyecto, asegúrate de tener instalado lo siguiente:
 
-### `npm test`
+- [Node.js](https://nodejs.org/) (versión 14 o superior)
+- [npm](https://www.npmjs.com/) o [yarn](https://yarnpkg.com/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Instalación
 
-### `npm run build`
+1. **Clona este repositorio en tu máquina local:**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```bash
+   git clone https://github.com/siegfriedgm/providers_ui.git
+   cd providers_ui
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. **Instala las dependencias:**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   Usando npm:
 
-### `npm run eject`
+   ```bash
+   npm install
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   O usando yarn:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```bash
+   yarn install
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. **Configuración del archivo `axiosConfig.js`**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   El archivo `axiosConfig.js` debe configurarse para apuntar al endpoint de tu API REST. Asegúrate de modificar la URL base en este archivo para que apunte a la dirección correcta de tu servidor backend.
 
-## Learn More
+   ```javascript
+   // src/components/axiosConfig.js
+   import axios from 'axios';
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   const axiosInstance = axios.create({
+       baseURL: 'http://localhost:8080', // Cambia esta URL al endpoint de tu API
+       headers: {
+           'Content-Type': 'application/json'
+       }
+   });
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   export default api;
+   ```
 
-### Code Splitting
+4. **Agregar Font Awesome**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+   Este proyecto utiliza íconos de Font Awesome para los botones de eliminación. Asegúrate de incluir el enlace CDN en `public/index.html` dentro del `<head>`:
 
-### Analyzing the Bundle Size
+   ```html
+   <!-- public/index.html -->
+   <link
+     rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+     crossorigin="anonymous"
+   />
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Ejecución del Proyecto
 
-### Making a Progressive Web App
+### Modo de Desarrollo
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Para iniciar el proyecto en modo de desarrollo, ejecuta:
 
-### Advanced Configuration
+```bash
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+O si estás usando yarn:
 
-### Deployment
+```bash
+yarn start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Esto iniciará la aplicación en `http://localhost:3000`, donde podrás acceder a la interfaz de usuario.
 
-### `npm run build` fails to minify
+### Construcción para Producción
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Para construir la aplicación para producción, usa:
+
+```bash
+npm run build
+```
+
+O si estás usando yarn:
+
+```bash
+yarn build
+```
+
+Esto generará una versión optimizada en la carpeta `build`.
+
+## Estructura del Proyecto
+
+- `src/App.js` - Configuración principal de la aplicación y del enrutamiento.
+- `src/components/WelcomeScreen.js` - Pantalla de bienvenida.
+- `src/components/ProvidersList.js` - Listado de proveedores con opciones de eliminación y vista virtualizada.
+- `src/components/ProvidersForm.js` - Formulario para agregar proveedores.
+- `src/components/axiosConfig.js` - Configuración de `axios` para conectar con la API backend.
+
+## Dependencias Principales
+
+- [React](https://reactjs.org/)
+- [Material-UI](https://mui.com/)
+- [react-virtualized](https://github.com/bvaughn/react-virtualized)
+- [axios](https://github.com/axios/axios)
+- [Font Awesome](https://fontawesome.com/)
+
+## Nota sobre el Backend
+
+El proyecto requiere un backend funcional que exponga los endpoints necesarios para la gestión de proveedores. Asegúrate de que tu API esté disponible en la misma URL configurada en `axiosConfig.js`.
+
+## Contribuciones
+
+Si deseas contribuir a este proyecto, siéntete libre de hacer un fork y enviar tus pull requests. Las sugerencias y mejoras son bienvenidas.
+
+## Licencia
+
+Este proyecto está bajo la licencia MIT.
